@@ -1,0 +1,260 @@
+/*
+ * Made by Pradhyumn Gupta
+ * This stylesheet styles the World Clock webpage, including
+ * the clock display, buttons, and animations. 
+ * Feel free to customize it further!
+ */
+
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box; /* Makes elements expand beyond their borders */
+    font-family: 'Arial', sans-serif; /* Sets the default font */
+    transition: all 0.5s ease-in-out; /* Smooth transition for all elements */
+}
+
+/* Body Styling */
+body {
+    display: flex;
+    flex-direction: column; /* Aligns items vertically */
+    justify-content: flex-start; /* Content starts at the top */
+    align-items: center; /* Centers items horizontally */
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    background-color: #2422ab; /* Fallback solid color */
+    color: white;
+    position: relative; /* Allows for absolute positioning of child elements */
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); /* Animated background */
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+/* Gradient Animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Clock Container Styles */
+.clock-container {
+    display: flex;
+    flex-direction: column; /* Stacks items vertically */
+    align-items: center;
+    position: relative;
+    margin-top: 150px; /* Adds spacing from the top */
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px; /* Rounds the corners */
+    background-color: #ff0062; /* Bright pink color */
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.8s;
+}
+
+button:hover {
+    background-color: #a50042; /* Darker pink on hover */
+}
+
+/* Select Dropdown Styling */
+select {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 20px; /* Rounded corners for a soft look */
+    background-color: #7d22e4;
+    color: white;
+    border: none;
+    font-size: 18px;
+    text-align: center;
+}
+
+select:hover {
+    background-color: #1a1555; /* Darker color on hover */
+}
+
+/* Main Clock Styling */
+.clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000; /* Solid black background */
+    padding: 40px;
+    border-radius: 22px;
+    box-shadow: 1px 13px 50px rgba(255, 0, 183, 0.5); /* Adds a bright shadow */
+    height: 250px;
+    width: 110%;
+}
+
+/* Pulsating Effect for Time */
+#time {
+    font-size: 170px; /* Large font size for emphasis */
+    letter-spacing: 8px; /* Space between characters */
+    text-shadow: 0px 10px 15px rgba(5, 16, 169, 0.7); /* Initial shadow color */
+    animation: pulsate 1.8s infinite alternate; /* Pulsating effect */
+}
+
+@keyframes pulsate {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+#date {
+    font-size: 30px;
+    margin-top: 10px;
+    color: white;
+    text-shadow: 0px 1px 5px rgba(5, 16, 169, 0.7); /* Light shadow for subtle effect */
+    font-weight: bold;
+}
+
+/* Quote Container Styling */
+.quote-container {
+    margin: 20px 0;
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Fullscreen Mode Styling */
+.fullscreen-mode #time {
+    font-size: 200px; /* Enlarged for fullscreen */
+    letter-spacing: 10px;
+    text-shadow: 0px 20px 30px rgba(5, 16, 169, 0.7); /* Increased shadow */
+}
+
+.fullscreen-mode #date {
+    font-size: 40px; /* Enlarged date */
+    text-shadow: 0px 3px 10px rgba(5, 16, 169, 0.7);
+}
+
+.fullscreen-mode .quote-container blockquote {
+    font-size: 25px; /* Larger quotes in fullscreen */
+}
+
+.fullscreen-mode {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.fullscreen-mode select, 
+.fullscreen-mode button {
+    display: none; /* Hide elements in fullscreen */
+}
+.fullscreen-mode .stopwatch-container {
+    display: none;
+}
+
+/* Calendar Icon Styling */
+.calendar-icon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ba0f92, #74b9ff);
+    padding: 25px;
+    border-radius: 50%;
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.6s ease, box-shadow 0.1s ease;
+    perspective: 1000px; /* Adds 3D effect */
+}
+
+.calendar-icon img {
+    width: 55px;
+    height: 55px;
+    transition: transform 0.8s ease; /* Smooth rotation */
+}
+
+.calendar-icon:hover img {
+    transform: rotateX(360deg); /* Full spin on hover */
+}
+
+.calendar-icon:hover {
+    transform: rotateY(360deg) scale(1.3); /* Adds rotation and scaling */
+    box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Notification Popup Styling */
+.notification-popup {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    font-size: 12px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.calendar-icon:hover .notification-popup {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Calendar Container Styling */
+#calendar-container {
+    display: none;
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    box-shadow: 0px 15px 30px rgba(222, 207, 207, 0.3);
+    overflow: hidden;
+}
+
+.calendar-icon.active + #calendar-container {
+    display: block; /* Show calendar on icon activation */
+}
+
+/* Stopwatch Container Styling */
+.stopwatch-container {
+    text-align: center;
+    background-color: #a29595;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    color: #fffffe;
+    border: 2px solid beige;
+}
+
+.display {
+    font-size: 48px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #000000;
+    border-radius: 8px;
+    border: 3px solid #9e1f4a;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button.start { background-color: #38b43e; }
+button.stop { background-color: #ff2e00; }
+button.reset { background-color: #4e98e7; }

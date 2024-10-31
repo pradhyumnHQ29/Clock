@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Clock.css">
+    <title>World Clock</title>
+</head>
+<body>
+    <!-- Main Container for Time, Date, and Quote -->
+    <div id="app">
+        <!-- Display the current time -->
+        <h1 id="time">Loading Time...</h1>
+        
+        <!-- Display the current date -->
+        <p id="date">Loading Date...</p>
+        
+        <!-- Container for motivational quote -->
+        <div class="quote-container">
+            <blockquote id="quote">Loading quote...</blockquote>
+        </div>
+
+        <!-- Dropdown menu to select different time zones -->
+        <select id="timezone-select">
+            <option value="UTC">UTC</option>
+            <option value="Asia/Kolkata">India (IST)</option>
+            <option value="America/New_York">New York (EST)</option>
+            <option value="Europe/London">London (GMT)</option>
+            <option value="Asia/Tokyo">Tokyo (JST)</option>
+            <!-- Additional time zones can be added here -->
+        </select>
+
+        <!-- Button to toggle fullscreen mode -->
+        <button id="fullscreen-btn">Fullscreen</button>
+        <button id="exit-fullscreen-btn" style="display:none;">Exit Fullscreen</button>
+        
+        <!-- Hidden AM/PM indicators -->
+        <div id="am-btn" style="display:none;"></div>
+        <div id="pm-btn" style="display:none;"></div>
+    </div>
+
+    <!-- Calendar icon with a success quote -->
+    <div id="calendar-icon" class="calendar-icon">
+        <img src="calender2.png" alt="Calendar Icon" id="calendar-icon-image">
+        <div class="notification-popup">
+            <p>"Success is not for the lazy! 🏋️‍♂️🔥"</p>
+        </div>
+    </div>
+
+    <!-- Google Calendar embed section -->
+    <div id="calendar-container" class="calendar-container">
+        <iframe src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FCalcutta"
+            style="border: 0;" width="400" height="300" frameborder="0" scrolling="yes"></iframe>
+    </div>
+
+    <!-- Stopwatch container with display and controls -->
+    <div class="stopwatch-container">
+        <h1>Stopwatch</h1>
+        <div id="display" class="display">00:00:00</div>
+        <div class="stopwatch">
+            <button id="startButton">Start</button>
+            <button id="stopButton" disabled>Stop</button>
+            <button id="resetButton" disabled>Reset</button>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="Clock.js"></script>
+</body>
+</html>
